@@ -1,0 +1,14 @@
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\RoninKarma.exe.config
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\RoninKarma.exe
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\RoninKarma.pdb
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\EloBuddy.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\EloBuddy.Sandbox.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\EloBuddy.SDK.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\Mario`s Lib.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\Newtonsoft.Json.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\SharpDX.Direct3D9.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\SharpDX.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\bin\Release\SharpDX.XInput.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\obj\Release\RoninKarma.csprojResolveAssemblyReference.cache
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\obj\Release\RoninKarma.exe
+D:\Tommi\Documents\My\Deve\Ronin`s Karma\Ronin Karma\obj\Release\RoninKarma.pdb
