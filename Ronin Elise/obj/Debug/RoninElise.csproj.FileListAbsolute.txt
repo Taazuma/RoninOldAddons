@@ -1,0 +1,2 @@
+D:\Tommi\Documents\My\Deve\Ronin Elise\Ronin Elise\bin\Debug\Ronin Elise.exe.config
+D:\Tommi\Documents\My\Deve\Ronin Elise\Ronin Elise\bin\Debug\RoninElise.exe.config
