@@ -1,0 +1,2 @@
+C:\Users\Tommi\Desktop\Ronin`s Kassa\Ronin Kassa\bin\Debug\RoninKassadin.exe.config
+D:\Tommi\Documents\My\Deve\Ronin`s Kassa\Ronin Kassa\bin\Debug\RoninKassadin.exe.config
