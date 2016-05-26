@@ -1,0 +1,2 @@
+D:\Tommi\Documents\My\Deve\Ronin Tune\Mario`s Template\bin\Debug\Ronin Tune.exe.config
+D:\Tommi\Documents\My\Deve\Ronin Tune\Ronin Tune\bin\Debug\Ronin Tune.exe.config
