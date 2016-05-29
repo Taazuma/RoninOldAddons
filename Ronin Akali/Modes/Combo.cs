@@ -23,9 +23,24 @@ namespace RoninAkali.Modes
     /// </summary>
     internal class Combo
     {
-        /// <summary>
-        /// Put in here what you want to do when the mode is running
-        /// </summary>
+
+        private static AIHeroClient enemyHaveMota
+        {
+            get
+            {
+                return
+                    (from enemy in
+                        ObjectManager.Get<AIHeroClient>().Where(enemy => enemy.IsEnemy && enemy.IsValidTarget(R.Range))
+                     from buff in enemy.Buffs
+                     where buff.DisplayName == "AkaliMota"
+                     select enemy).FirstOrDefault();
+            }
+        }
+        public static AIHeroClient _player
+        {
+            get { return ObjectManager.Player; }
+        }
+
         public static void Execute()
         {
             var qtarget = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
@@ -53,7 +68,11 @@ namespace RoninAkali.Modes
                 }
             }, Rdelay);
 
-            Core.DelayAction(delegate
+                var motaEnemy = enemyHaveMota;
+                if (motaEnemy != null && motaEnemy.IsValidTarget(_player.GetAutoAttackRange(qtarget)))
+                    return;
+
+                Core.DelayAction(delegate
             {
                 if (ComboMenu.GetCheckBoxValue("eUse") && E.IsReady() && etarget.IsValidTarget(E.Range))
                 {
@@ -82,6 +101,10 @@ namespace RoninAkali.Modes
                     }
                 }, Qdelay);
 
+                var motaEnemy = enemyHaveMota;
+                if (motaEnemy != null && motaEnemy.IsValidTarget(_player.GetAutoAttackRange(qtarget)))
+                    return;
+
                 Core.DelayAction(delegate
                 {
                     if (ComboMenu.GetCheckBoxValue("eUse") && E.IsReady() && etarget.IsValidTarget(E.Range))
@@ -107,6 +130,50 @@ namespace RoninAkali.Modes
                 }
             }
             // COMBO 2 END --------------------------------------------------------------------------------
+
+            // COMBO 3 Beginn --------------------------------------------------------------------------------
+            if (ComboMenu.GetCheckBoxValue("combo3"))
+            {
+
+                Core.DelayAction(delegate
+                {
+                    if (ComboMenu.GetCheckBoxValue("rUse") && R.IsReady() && rtarget.IsValidTarget(R.Range))
+                    {
+                        R.Cast(rtarget);
+                    }
+                }, Rdelay);
+
+                Core.DelayAction(delegate
+                {
+                    if (ComboMenu.GetCheckBoxValue("qUse") && Q.IsReady() && qtarget.IsValidTarget(Q.Range))
+                    {
+                        Q.Cast(qtarget);
+                    }
+                }, Qdelay);
+
+                var motaEnemy = enemyHaveMota;
+                if (motaEnemy != null && motaEnemy.IsValidTarget(_player.GetAutoAttackRange(qtarget)))
+                    return;
+
+                Core.DelayAction(delegate
+                {
+                    if (ComboMenu.GetCheckBoxValue("eUse") && E.IsReady() && etarget.IsValidTarget(E.Range))
+                    {
+                        E.Cast();
+                    }
+                }, Edelay);
+
+
+
+                if (W.IsReady() && wtarget.IsValidTarget(W.Range) && ComboMenu.GetCheckBoxValue("wUse"))
+                {
+                    if (Player.Instance.CountEnemiesInRange(Q.Range) >= 1 || Player.Instance.HealthPercent <= 15)
+                    {
+                        W.Cast(Player.Instance);
+                    }
+                }
+            }
+            // COMBO 3 END --------------------------------------------------------------------------------
 
         }
     }

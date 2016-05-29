@@ -1,1 +1,2 @@
 D:\Tommi\Documents\My\Deve\Ronin`s Akali\Ronin Akali\bin\Debug\Ronin.exe.config
+D:\Tommi\Documents\My\Deve\Ronin Old\Ronin`s Akali\Ronin Akali\bin\Debug\Ronin.exe.config

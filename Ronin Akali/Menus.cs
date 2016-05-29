@@ -70,11 +70,13 @@ namespace RoninAkali
             ComboMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             ComboMenu.AddLabel("ComboLogics");
             ComboMenu.CreateCheckBox("Normal One", "combo1", false);
-            ComboMenu.AddGroupLabel("Combo Q - R - E - W (when Low)");
+            ComboMenu.AddGroupLabel("Combo Q - AA - R - E - W (when Low)");
             ComboMenu.AddSeparator(10);
             ComboMenu.CreateCheckBox("Extend Two", "combo2", true);
-            ComboMenu.AddGroupLabel("Combo Q - E - R - W (when Low)");
+            ComboMenu.AddGroupLabel("Combo Q - AA - E - R - W (when Low)");
             ComboMenu.AddSeparator(10);
+            ComboMenu.CreateCheckBox("Extend Three", "combo2", true);
+            ComboMenu.AddGroupLabel("Combo R - Q - AA - E - W (when Low)");
             ComboMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             ComboMenu.CreateCheckBox(" - Use Q", "qUse");
             ComboMenu.CreateCheckBox(" - Use W", "wUse");
