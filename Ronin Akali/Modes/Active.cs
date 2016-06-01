@@ -40,7 +40,7 @@ namespace RoninAkali.Modes
                     W.Cast(Player.Instance);
                 }
             }
-            if (Player.Instance.CountEnemiesInRange(Q.Range) >= 2 || Player.Instance.HealthPercent <= 20 && W.IsReady())
+            if (Player.Instance.CountEnemiesInRange(W.Range) >= 2 || Player.Instance.HealthPercent <= 20 && W.IsReady())
             {
                 W.Cast(Player.Instance);
             }
