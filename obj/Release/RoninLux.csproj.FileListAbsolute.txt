@@ -1,0 +1,42 @@
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\RoninLux.exe.config
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\RoninLux.exe
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\RoninLux.pdb
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\EloBuddy.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\EloBuddy.Sandbox.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\EloBuddy.SDK.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\Mario`s Lib.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\Newtonsoft.Json.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\SharpDX.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\bin\Release\SharpDX.XInput.dll
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\obj\Release\RoninLux.csprojResolveAssemblyReference.cache
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\obj\Release\RoninLux.exe
+C:\Users\Tommi\Desktop\Ronin`s Lux\Ronin Lux\obj\Release\RoninLux.pdb
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\RoninLux.exe.config
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\RoninLux.exe
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\RoninLux.pdb
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\EloBuddy.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\EloBuddy.Sandbox.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\EloBuddy.SDK.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\Mario`s Lib.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\Newtonsoft.Json.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\SharpDX.Direct3D9.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\SharpDX.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\bin\Release\SharpDX.XInput.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\obj\Release\RoninLux.csprojResolveAssemblyReference.cache
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\obj\Release\RoninLux.exe
+D:\Tommi\Documents\My\Deve\Ronin`s Lux\Ronin Lux\obj\Release\RoninLux.pdb
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\RoninLux.exe.config
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\RoninLux.exe
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\RoninLux.pdb
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\EloBuddy.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\EloBuddy.Sandbox.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\EloBuddy.SDK.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\Mario`s Lib.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\Newtonsoft.Json.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\SharpDX.Direct3D9.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\SharpDX.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\bin\Release\SharpDX.XInput.dll
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\obj\Release\RoninLux.csprojResolveAssemblyReference.cache
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\obj\Release\RoninLux.exe
+D:\Tommi\Documents\My\Deve\Ronin`s Lux Old\Ronin Lux\obj\Release\RoninLux.pdb

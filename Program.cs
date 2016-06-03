@@ -1,0 +1,40 @@
+﻿using System;
+using EloBuddy;
+using EloBuddy.SDK.Events;
+using RoninLux.Modes;
+
+namespace RoninLux
+{
+    internal class Program
+    {
+        // ReSharper disable once UnusedParameter.Local
+        /// <summary>
+        /// The firs thing that runs on the template
+        /// </summary>
+        /// <param name="args"></param>
+        private static void Main(string[] args)
+        {
+            Loading.OnLoadingComplete += Loading_OnLoadingComplete;
+        }
+
+        /// <summary>
+        /// This event is triggered when the game loads
+        /// </summary>
+        /// <param name="args"></param>
+        private static void Loading_OnLoadingComplete(EventArgs args)
+        {
+            //Put the name of the champion here
+            //if (Player.Instance.ChampionName != "NameOfTheChampion") return;
+            Chat.Print("Welcome to the Ronin´s BETA ;)");
+            SpellsManager.InitializeSpells();
+            Menus.CreateMenu();
+            ModeManager.InitializeModes();
+            DrawingsManager.InitializeDrawings();
+            //_W.Initialize();
+            //_W_Advance.Initialize();
+            Interrupter.OnInterruptableSpell += ModeManager.Interrupter_OnInterruptableSpell;
+            Gapcloser.OnGapcloser += ModeManager.AntiGapCloser;
+            //Obj_AI_Base.OnProcessSpellCast += ModeManager.OnProcessSpellCast;
+        }
+    }
+}
