@@ -1,6 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Media;
+using System.Net;
 using EloBuddy;
+using EloBuddy.SDK;
+using EloBuddy.SDK.Constants;
+using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Events;
+using EloBuddy.SDK.Menu.Values;
+using EloBuddy.SDK.Rendering;
+using SharpDX;
+using Mario_s_Lib;
+using static Ronin.Menus;
+using static Ronin.SpellsManager;
 using Ronin.Modes;
 
 namespace Ronin
@@ -30,6 +44,32 @@ namespace Ronin
             Menus.CreateMenu();
             ModeManager.InitializeModes();
             DrawingsManager.InitializeDrawings();
+            Interrupter.OnInterruptableSpell += Program.Interrupter2_OnInterruptableTarget;
+            Interrupter.OnInterruptableSpell += Program.Interrupter3_OnInterruptableTarget;
         }
+        public static AIHeroClient _player
+        {
+            get { return ObjectManager.Player; }
+        }
+        private static void Interrupter2_OnInterruptableTarget(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs args)
+        {
+            if (_player.IsDead) return;
+            if (E.IsReady() && sender.IsValidTarget(E.Range) && MiscMenu.GetCheckBoxValue("UseEInt"))
+            {
+                var predE = E.GetPrediction(sender);
+                E.Cast(sender.Position);
+            }
+        }
+
+        private static void Interrupter3_OnInterruptableTarget(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs args)
+        {
+            if (_player.IsDead) return;
+            if (W.IsReady() && sender.IsValidTarget(W.Range) && MiscMenu.GetCheckBoxValue("UseWInt"))
+            {
+                var wtarget = TargetSelector.GetTarget(W.Range, DamageType.Magical);
+                W.Cast(wtarget);
+            }
+        }
+
     }
 }

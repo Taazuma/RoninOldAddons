@@ -121,6 +121,8 @@ namespace Ronin
             MiscMenu.CreateComboBox("2nd Spell to focus", "secondFocus", new List<string> {"Q", "W", "E"}, 1);
             MiscMenu.CreateComboBox("3rd Spell to focus", "thirdFocus", new List<string> {"Q", "W", "E"}, 2);
             MiscMenu.CreateSlider("Delay slider", "delaySlider", 200, 150, 500);
+            MiscMenu.Add("UseEInt", new CheckBox("E to Interrupt"));
+            MiscMenu.Add("UseWInt", new CheckBox("W to Interrupt"));
 
             DrawingsMenu.AddGroupLabel("Settings");
             DrawingsMenu.CreateCheckBox(" - Draw Spell`s range only if they are ready.", "readyDraw");
