@@ -41,6 +41,7 @@ namespace RoninTune
             _W_Advance.Initialize();
             ModeManager.InitializeModes();
             DrawingsManager.InitializeDrawings();
+            Events.Initialize();
             Interrupter.OnInterruptableSpell += Program.Interrupter2_OnInterruptableTarget;
         }
         public static float SmiteDmgMonster(Obj_AI_Base target)
@@ -61,6 +62,14 @@ namespace RoninTune
                 "SRU_Krug", "Sru_Crab", "TT_Spiderboss",
                 "TT_NGolem", "TT_NWolf", "TT_NWraith"
        };
+
+        public readonly static string[] MonstersNames =
+        {
+            "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Earth", "SRU_Dragon_Air", "SRU_Dragon_Elder", "Sru_Crab", "SRU_Baron", "SRU_RiftHerald",
+            "SRU_Red", "SRU_Blue",  "SRU_Krug", "SRU_Gromp", "SRU_Murkwolf", "SRU_Razorbeak",
+            "TT_Spiderboss", "TTNGolem", "TTNWolf", "TTNWraith",
+        };
+
         public static bool getCheckBoxItem(Menu m, string item)
         {
             return m[item].Cast<CheckBox>().CurrentValue;
