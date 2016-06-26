@@ -26,9 +26,14 @@ namespace RoninTune.Modes
         public static readonly AIHeroClient Player = ObjectManager.Player;
         public static void Execute()
         {
+            var target = TargetSelector.GetTarget(E.Range, DamageType.Mixed);
             if (Q.IsReady())
             {
-                Q.Cast(Player.ServerPosition.Extend(Game.CursorPos, W.Range).To3D());
+                Q.Cast(Player.ServerPosition.Extend(Game.CursorPos, Q.Range).To3D());
+            }
+            if (E.IsReady() && target.IsValidTarget(E.Range))
+            {
+                E.Cast(target);
             }
         }
     }

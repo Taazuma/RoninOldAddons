@@ -152,14 +152,14 @@ private static void Game_OnTick(EventArgs args)
             var orbMode = Orbwalker.ActiveModesFlags;
             var playerMana = Player.Instance.ManaPercent;
 
-        
+            Active.Execute();
 
             if (orbMode.HasFlag(Orbwalker.ActiveModes.Combo))
             {
                 Combo.Execute();
             }
 
-
+            
 
             if (orbMode.HasFlag(Orbwalker.ActiveModes.Harass) && playerMana > HarassMenu.GetSliderValue("manaSlider"))
             {

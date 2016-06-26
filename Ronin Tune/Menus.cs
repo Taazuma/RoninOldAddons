@@ -73,7 +73,7 @@ namespace RoninTune
             //LasthitMenu = FirstMenu.AddSubMenu("♠ LastHit", LastHitMenuID);
             JungleClearMenu = FirstMenu.AddSubMenu("♠ JungleClear", JungleClearMenuID);
             KillStealMenu = FirstMenu.AddSubMenu("♠ KillSteal", KillStealMenuID);
-            ItemMenu = FirstMenu.AddSubMenu("♠ Items", ItemMenuID);
+            //ItemMenu = FirstMenu.AddSubMenu("♠ Items", ItemMenuID);
             MiscMenu = FirstMenu.AddSubMenu("♠ Misc", MiscMenuID);
             DrawingsMenu = FirstMenu.AddSubMenu("♠ Drawings", DrawingsMenuID);
  
@@ -146,7 +146,6 @@ namespace RoninTune
             JungleClearMenu.CreateCheckBox(" - Use Q", "qUse");
             JungleClearMenu.CreateCheckBox(" - Use W", "wUse");
             JungleClearMenu.CreateCheckBox(" - Use E", "eUse");
-            JungleClearMenu.CreateCheckBox(" - Use Smite ", "jgSmite", false);
             JungleClearMenu.AddGroupLabel("Settings");
             JungleClearMenu.CreateSlider("Mana must be higher than [{0}%] to use JungleClear spells", "manaSlider", 20);
             JungleClearMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
@@ -157,35 +156,25 @@ namespace RoninTune
             KillStealMenu.CreateCheckBox(" - Use Q", "qUse", true);
             KillStealMenu.CreateCheckBox(" - Use E", "eUse", true);
             KillStealMenu.CreateCheckBox(" - Use R", "rUse", false);
-            KillStealMenu.CreateCheckBox(" - Use Smite KS Logic 1", "smiteUse", false);
-            KillStealMenu.CreateCheckBox(" - Use Smite KS Logic 2", "smite2Use", true);
             KillStealMenu.AddGroupLabel("Settings");
             KillStealMenu.CreateSlider("Mana must be higher than [{0}%] to use Killsteal spells", "manaSlider", 10);
             KillStealMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             KillStealMenu.AddSeparator();
 
-            ItemMenu.AddGroupLabel("Items");
-            ItemMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+            //ItemMenu.AddGroupLabel("Items");
+            //ItemMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
 
-            ItemMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-            ItemMenu.AddSeparator();
+            //ItemMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+            //ItemMenu.AddSeparator();
 
-            MiscMenu.AddLabel("Smite CAN BE BUGGY");
-            MiscMenu.CreateCheckBox("- Dragon Steal OP", "jgmDragonSteal");
-            MiscMenu.Add("smcb", new CheckBox("Use Smite in Combo"));
-            if (Game.MapId == GameMapId.SummonersRift)
+            MiscMenu.Add("UseWInt", new CheckBox("W Save Interrupt"));
+            if (SpellsManager.Smite.IsLearned)
             {
-                MiscMenu.Add("smjc", new CheckBox("Use smite to junglesteal"));
-                MiscMenu.Add("Baron", new CheckBox("Jungsteal Baron"));
-                MiscMenu.Add("Dragon", new CheckBox("Jungsteal Dragon"));
-                MiscMenu.Add("Herald", new CheckBox("Jungsteal Herald"));
-                MiscMenu.Add("Red", new CheckBox("Jungsteal Red"));
-                MiscMenu.Add("Blue", new CheckBox("Jungsteal Blue"));
-                MiscMenu.Add("Razorbeak", new CheckBox("Jungsteal Crimson Raptor", false));
-                MiscMenu.Add("Krug", new CheckBox("Jungsteal Ancient Krug", false));
-                MiscMenu.Add("Murkwolf", new CheckBox("Jungsteal Greater Murk Wolf", false));
-                MiscMenu.Add("Gromp", new CheckBox("Jungsteal Gromp", false));
-                MiscMenu.Add("Crab", new CheckBox("Jungsteal Crap"));
+                MiscMenu.AddGroupLabel("Spell Settings");
+                MiscMenu.AddLabel("Smite Spell");
+                MiscMenu.CreateCheckBox("Use Smite to KS", "sks");
+                MiscMenu.CreateCheckBox("Use Smite in JGL", "sjgl");
+                MiscMenu.Add("smitekey", new KeyBind("Smite Activated", false, KeyBind.BindTypes.PressToggle, 'M'));
             }
 
 
@@ -200,8 +189,6 @@ namespace RoninTune
                     Player.Instance.SetSkinId(sender.CurrentValue);
                 };
             }
-
-         
             MiscMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             MiscMenu.CreateCheckBox("- Use OP W Logic", "wLogic");
             MiscMenu.AddSeparator(10);

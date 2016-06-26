@@ -76,14 +76,6 @@ namespace RoninTune.Modes
                         }
                     }
                 }
-                if (MiscMenu["smcb"].Cast<CheckBox>().CurrentValue && SmiteManager.CanUseOnChamp)
-                {
-                    var smitetarget = TargetSelector.GetTarget(Smite.Range, DamageType.True);
-                    if (smitetarget != null && smitetarget.IsValidTarget() && Smite.IsReady())
-                    {
-                        Smite.Cast(target.Position);
-                    }
-                }
             }
 
             else if (ComboMenu.GetCheckBoxValue("cTwo"))
@@ -121,14 +113,6 @@ namespace RoninTune.Modes
                         }
                     }
                 }
-                if (MiscMenu["smcb"].Cast<CheckBox>().CurrentValue && SmiteManager.CanUseOnChamp)
-                {
-                    var smitetarget = TargetSelector.GetTarget(Smite.Range, DamageType.True);
-                    if (smitetarget != null && smitetarget.IsValidTarget() && Smite.IsReady())
-                    {
-                        Smite.Cast(target.Position);
-                    }
-                }
             }
 
            else if (ComboMenu.GetCheckBoxValue("cThree"))
@@ -159,13 +143,6 @@ namespace RoninTune.Modes
                         E.Cast(eenemies);
                     }
                     }
-                    if (MiscMenu["smcb"].Cast<CheckBox>().CurrentValue && SmiteManager.CanUseOnChamp)
-                    {
-                        var smitetarget = TargetSelector.GetTarget(Smite.Range, DamageType.True);
-                        if (smitetarget != null && smitetarget.IsValidTarget() && Smite.IsReady())
-                        {
-                            Smite.Cast(target.Position);
-                        }
                     }
 
 
@@ -183,4 +160,4 @@ namespace RoninTune.Modes
             //R.TryToCast(target, ComboMenu);
 
         }
-    }
+    

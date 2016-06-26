@@ -34,22 +34,14 @@ namespace RoninTune
         /// </summary>
         public static void InitializeSpells()
         {
+            var smite = Player.Spells.FirstOrDefault(s => s.SData.Name.ToLower().Contains("smite"));
+            if (smite != null)
+                Smite = new Spell.Targeted(smite.Slot, 570);
             Q = new Spell.Skillshot(SpellSlot.Q, 1125, SkillShotType.Linear);
             W = new Spell.Active(SpellSlot.W);
             E = new Spell.Targeted(SpellSlot.E, 425);
             R = new Spell.Active(SpellSlot.R, 2500);
             R1 = new Spell.Targeted(SpellSlot.R, R.Range);
-            //SMITE IGNITE
-            var slot = ObjectManager.Player.GetSpellSlotFromName("summonerdot");
-            if (slot != SpellSlot.Unknown)
-            {
-                Ignite = new Spell.Targeted(slot, 600);
-            }
-            slot = Player.Instance.GetSpellSlotFromName("smite");
-            if (slot != SpellSlot.Unknown)
-            {
-                Smite = new Spell.Targeted(slot, 500);
-            }
             //Q = new Spell.Targeted(SpellSlot.Q, 350);
             //W = new Spell.Active(SpellSlot.W, 200);
             //E = new Spell.Active(SpellSlot.E, 300);
@@ -58,68 +50,25 @@ namespace RoninTune
 
             Obj_AI_Base.OnLevelUp += Obj_AI_Base_OnLevelUp;
         }
-        
+
         public static bool HasSmite()
         {
-            return Smite != null && Smite.IsLearned;
+            return Smite != null;
         }
-        public static bool SmiteIsReady
+
+        public static bool HasChillingSmite()
         {
-            get
-            {
-                return Smite != null && Smite.IsReady();
-            }
+
+            return Smite != null &&
+                   Smite.Name.Equals("s5_summonersmiteplayerganker", StringComparison.CurrentCultureIgnoreCase);
         }
-        public static bool IsInSmiteRange(this Obj_AI_Base target)
+
+        public static bool HasChallengingSmite()
         {
-            return target.IsValidTarget(Smite.Range + Util.MyHero.BoundingRadius + target.BoundingRadius);
+            return Smite != null &&
+            Smite.Name.Equals("s5_summonersmiteduel", StringComparison.CurrentCultureIgnoreCase);
         }
-        public static SpellSlot SpellSlotFromName(this AIHeroClient hero, string name)
-        {
-            foreach (var s in hero.Spellbook.Spells.Where(s => s.Name.ToLower().Contains(name.ToLower())))
-            {
-                return s.Slot;
-            }
-            return SpellSlot.Unknown;
-        }
-        public static bool IsDragon(this Obj_AI_Minion minion)
-        {
-            return minion.IsValidTarget() && (minion.Name.ToLower().Contains("baron") || minion.Name.ToLower().Contains("dragon"));
-        }
-        public static float SmiteDamage(this Obj_AI_Base target)
-        {
-            if (target.IsValidTarget() && SmiteIsReady)
-            {
-                if (target is AIHeroClient)
-                {
-                    if (CanUseSmiteOnHeroes)
-                    {
-                        return Util.MyHero.GetSummonerSpellDamage(target, DamageLibrary.SummonerSpells.Smite);
-                    }
-                }
-                else
-                {
-                    var level = Util.MyHero.Level;
-                    return (new[] { 20 * level + 370, 30 * level + 330, 40 * level + 240, 50 * level + 100 }).Max();
-                }
-            }
-            return 0;
-        }
-        public static bool CanUseSmiteOnHeroes
-        {
-            get
-            {
-                if (SmiteIsReady)
-                {
-                    var name = Smite.Slot.GetSpellDataInst().SData.Name.ToLower();
-                    if (name.Contains("smiteduel") || name.Contains("smiteplayerganker"))
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        }
+
         public static bool IsReady(this SpellSlot slot)
         {
             return slot.GetSpellDataInst().IsReady;

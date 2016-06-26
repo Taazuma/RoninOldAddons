@@ -54,21 +54,6 @@ namespace RoninTune.Modes
                             Q.Cast(target.Position);
                         }
                     }
-                    var useSmite = KillStealMenu.GetCheckBoxValue("smiteUse");
-                    if (useSmite && Smite != null && SmiteManager.CanUseOnChamp)
-                    {
-                        var smitetarget = TargetSelector.GetTarget(EntityManager.Heroes.Enemies.Where(t => t.IsValidTarget(Smite.Range)
-                            && t.Health <= Damage.SmiteDamage(t)), DamageType.True);
-
-                        if (smitetarget != null)
-                        {
-                            Smite.Cast(target);
-                        }
-                    }
-                    if (KillStealMenu.GetCheckBoxValue("smite2Use") && SpellsManager.CanUseSmiteOnHeroes && target.IsInSmiteRange() && Util.MyHero.GetSummonerSpellDamage(target, DamageLibrary.SummonerSpells.Smite) >= target.Health)
-                    {
-                        Util.MyHero.Spellbook.CastSpell(SpellsManager.Smite.Slot, target);
-                    }
 
                     if (KillStealMenu.GetCheckBoxValue("eUse") && E.IsReady() &&
                         target.Health + target.AttackShield <

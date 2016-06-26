@@ -48,20 +48,6 @@ namespace RoninTune.Modes
             {
                 W.Cast();
             }
-            if (SpellsManager.SmiteIsReady)
-            {
-                if (JungleClearMenu.GetCheckBoxValue("jgSmite"))
-                {
-                    var dragon = EntityManager.MinionsAndMonsters.GetJungleMonsters(Util.MyHero.Position, SpellsManager.Q.Range).FirstOrDefault(m => m.IsInSmiteRange() && m.IsDragon());
-                    if (dragon != null)
-                    {
-                        if (dragon.Health <= dragon.SmiteDamage())
-                        {
-                            Util.MyHero.Spellbook.CastSpell(SpellsManager.Smite.Slot, dragon);
-                        }
-                    }
-                }
-            }
             //Q.TryToCast(Q.GetJungleMinion(), JungleClearMenu);
             //W.TryToCast(Q.GetJungleMinion(), JungleClearMenu);
             //E.TryToCast(Q.GetJungleMinion(), JungleClearMenu);
