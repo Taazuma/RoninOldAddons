@@ -40,7 +40,7 @@ namespace RoninVelkoz.Modes
             if (qtarget.IsValidTarget())
             {
                 if (qtarget != null)
-                if (ComboMenu.GetCheckBoxValue("qUse") && qtarget.IsValidTarget(SpellsManager.Q.Range) && Q.IsReady() && Q.GetPrediction(qtarget).HitChance >= Hitch.hitchance(Q, ComboMenu))
+                if (ComboMenu.GetCheckBoxValue("qUse") && qtarget.IsValidTarget(SpellsManager.Q.Range) && Q.IsReady() && Q.GetPrediction(qtarget).HitChance >= Hitch.hitchance(Q, ComboMenu) && Q.Name == "VelkozQ")
                 {
                     Q.Cast(qtarget);
                 }
@@ -51,7 +51,7 @@ namespace RoninVelkoz.Modes
                 E.Cast(etarget);
             }
 
-            if (ComboMenu.GetCheckBoxValue("wUse") && W.IsReady() && wtarget.IsValidTarget(SpellsManager.W.Range) && W.GetPrediction(wtarget).HitChance >= Hitch.hitchance(W, ComboMenu))
+            if (ComboMenu.GetCheckBoxValue("wUse") && W.IsReady() && wtarget.IsValidTarget(SpellsManager.W.Range) && W.GetPrediction(wtarget).HitChance >= Hitch.hitchance(W, ComboMenu) && !Program.Champion.HasBuff("VelkozR"))
             {
                 W.Cast(wtarget);
             }
@@ -65,6 +65,7 @@ namespace RoninVelkoz.Modes
                         if (useR)
                         { 
                             R.Cast(ultenemies.Position);
+                            Program.UltFollowMode();
                         }
                     }
                 }

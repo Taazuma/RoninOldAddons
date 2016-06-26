@@ -50,7 +50,6 @@ namespace RoninVelkoz
             W = new Spell.Skillshot(SpellSlot.W, 1050, SkillShotType.Linear, 250, 1700, 80);
             E = new Spell.Skillshot(SpellSlot.E, 850, SkillShotType.Circular, 500, 1500, 120);
             R = new Spell.Skillshot(SpellSlot.R, 1575, SkillShotType.Linear);
-
             Obj_AI_Base.OnLevelUp += Obj_AI_Base_OnLevelUp;
         }
 
@@ -167,39 +166,39 @@ namespace RoninVelkoz
         {
             return new float[] { 0, 500, 700, 900 }[R.Level] + 0.5f * Champion.FlatMagicDamageMod;
         }
-        public static void QSplit(EventArgs args)
-        {
-            // Check if the missile is active
-            if (Handle != null && Q.IsReady() && Q.Name == "velkozqsplitactivate")
-            {
-                foreach (var perpendicular in Perpendiculars)
-                {
-                    if (Handle != null)
-                    {
-                        var startPos = Handle.Position.To2D();
-                        var endPos = Handle.Position.To2D() + SpellRange * perpendicular;
+        //public static void QSplit(EventArgs args)
+        //{
+        //    // Check if the missile is active
+        //    if (Handle != null && Q.IsReady() && Q.Name == "velkozqsplitactivate")
+        //    {
+        //        foreach (var perpendicular in Perpendiculars)
+        //        {
+        //            if (Handle != null)
+        //            {
+        //                var startPos = Handle.Position.To2D();
+        //                var endPos = Handle.Position.To2D() + SpellRange * perpendicular;
 
-                        var collisionObjects = ObjectManager.Get<Obj_AI_Base>()
-                            .Where(o => o.IsEnemy && !o.IsDead && !o.IsStructure() && !o.IsWard() && !o.IsInvulnerable
-                                    && o.Distance(Champion, true) < (SpellRange + 200).Pow()
-                                    && o.ServerPosition.To2D().Distance(startPos, endPos, true, true) <= (SpellWidth * 2 + o.BoundingRadius).Pow());
+        //                var collisionObjects = ObjectManager.Get<Obj_AI_Base>()
+        //                    .Where(o => o.IsEnemy && !o.IsDead && !o.IsStructure() && !o.IsWard() && !o.IsInvulnerable
+        //                            && o.Distance(Champion, true) < (SpellRange + 200).Pow()
+        //                            && o.ServerPosition.To2D().Distance(startPos, endPos, true, true) <= (SpellWidth * 2 + o.BoundingRadius).Pow());
 
-                        var colliding = collisionObjects
-                            .Where(o => o.Type == GameObjectType.AIHeroClient && o.IsValidTarget()
-                                    && Prediction.Position.Collision.LinearMissileCollision(o, startPos, endPos, MissileSpeed, SpellWidth, CastDelay, (int)o.BoundingRadius))
-                                .OrderBy(o => o.Distance(Champion, true)).FirstOrDefault();
+        //                var colliding = collisionObjects
+        //                    .Where(o => o.Type == GameObjectType.AIHeroClient && o.IsValidTarget()
+        //                            && Prediction.Position.Collision.LinearMissileCollision(o, startPos, endPos, MissileSpeed, SpellWidth, CastDelay, (int)o.BoundingRadius))
+        //                        .OrderBy(o => o.Distance(Champion, true)).FirstOrDefault();
 
-                        if (colliding != null)
-                        {
-                            Player.CastSpell(SpellSlot.Q);
-                            Handle = null;
-                        }
-                    }
-                }
-            }
-            else
-                Handle = null;
-        }
+        //                if (colliding != null)
+        //                {
+        //                    Player.CastSpell(SpellSlot.Q);
+        //                    Handle = null;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //        Handle = null;
+        //}
 
         private static SpellSlot GetSlotFromComboBox(this int value)
         {
