@@ -54,13 +54,20 @@ namespace RoninSkarner
         }
 
         public static readonly string[] BuffsThatActuallyMakeSenseToSmite =
-       {
+        {
                 "SRU_Red", "SRU_Blue", "SRU_Dragon_Water",  "SRU_Dragon_Fire", "SRU_Dragon_Earth", "SRU_Dragon_Air", "SRU_Dragon_Elder",
                 "SRU_Baron", "SRU_Gromp", "SRU_Murkwolf",
                 "SRU_RiftHerald",
                 "SRU_Krug", "Sru_Crab", "TT_Spiderboss",
                 "TT_NGolem", "TT_NWolf", "TT_NWraith"
        };
+
+        public readonly static string[] MonstersNames =
+        {
+            "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Earth", "SRU_Dragon_Air", "SRU_Dragon_Elder", "Sru_Crab", "SRU_Baron", "SRU_RiftHerald",
+            "SRU_Red", "SRU_Blue",  "SRU_Krug", "SRU_Gromp", "SRU_Murkwolf", "SRU_Razorbeak",
+            "TT_Spiderboss", "TTNGolem", "TTNWolf", "TTNWraith",
+        };
 
     }
 }

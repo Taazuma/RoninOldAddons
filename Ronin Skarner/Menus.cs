@@ -137,7 +137,12 @@ namespace RoninSkarner
                 MiscMenu.AddLabel("Smite Spell");
                 MiscMenu.CreateCheckBox("Use Smite to KS", "sks");
                 MiscMenu.CreateCheckBox("Use Smite in JGL", "sjgl");
+                MiscMenu.CreateCheckBox("Use Smite in Fight", "fjgl", false);
                 MiscMenu.Add("smitekey", new KeyBind("Smite Activated", false, KeyBind.BindTypes.PressToggle, 'M'));
+                MiscMenu.AddSeparator(15);
+                MiscMenu.Add("vSmiteDrawSmiteStatus", new CheckBox("Draw Smite Status"));
+                MiscMenu.Add("vSmiteDrawSmiteable", new CheckBox("Draw Smiteable Monsters"));
+                MiscMenu.Add("vSmiteDrawRange", new CheckBox("Draw Smite Range"));
             }
             MiscMenu.AddGroupLabel("Auto Level UP");
             MiscMenu.CreateCheckBox("Activate Auto Leveler", "activateAutoLVL", false);
