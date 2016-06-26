@@ -35,7 +35,7 @@ namespace RoninSkarner.Modes
             var target = TargetSelector.GetTarget(1500, DamageType.Magical);
             var etarget = TargetSelector.GetTarget(E.Range, DamageType.Magical);
 
-            if (HarassMenu.GetCheckBoxValue("eUse") && etarget.IsValidTarget(SpellsManager.E.Range) && E.IsReady())
+            if (HarassMenu.GetCheckBoxValue("eUse") && etarget.IsValidTarget(SpellsManager.E.Range) && E.IsReady() && E.GetPrediction(etarget).HitChance >= Hitch.hitchance(E, FirstMenu))
             {
                 foreach (var eenemies in enemiese)
                 {

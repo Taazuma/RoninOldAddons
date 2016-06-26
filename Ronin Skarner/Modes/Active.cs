@@ -23,11 +23,27 @@ namespace RoninSkarner.Modes
     /// </summary>
     internal class Active
     {
-        /// <summary>
-        /// Put in here what you want to do when the mode is running
-        /// </summary>
+        public static Obj_AI_Minion Minion;
         public static void Execute()
         {
+            if (Smite.IsLearned) // SMITE START
+            {
+                Minion = (Obj_AI_Minion)EntityManager.MinionsAndMonsters.Monsters.FirstOrDefault(buff => Program._player.IsInRange(buff, 570) && (buff.Name.StartsWith(buff.BaseSkinName) || Program.BuffsThatActuallyMakeSenseToSmite.Contains(buff.BaseSkinName)) && !buff.Name.Contains("Mini") && !buff.Name.Contains("Spawn"));
+                AIHeroClient target = TargetSelector.GetTarget(570, DamageType.Magical);
+
+
+
+                if (MiscMenu.GetKeyBindValue("smitekey") && Minion.IsValidTarget(570) && Minion.Health < Program.SmiteDmgMonster(Minion) && MiscMenu.GetCheckBoxValue("sjgl") && SpellsManager.Smite.IsReady())
+                {
+                    Smite.Cast(Minion);
+                }
+
+                if (target.IsValidTarget(570) && target.Health < Program.SmiteDmgHero(target) && MiscMenu.GetCheckBoxValue("sks") && SpellsManager.Smite.IsReady())
+                {
+                    Smite.Cast(target);
+                }
+
+            } // SMITE END
         }
     }
 }

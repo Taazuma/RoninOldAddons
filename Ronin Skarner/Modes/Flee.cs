@@ -26,10 +26,15 @@ namespace RoninSkarner.Modes
         public static readonly AIHeroClient Player = ObjectManager.Player;
         public static void Execute()
         {
+            var etarget = TargetSelector.GetTarget(E.Range, DamageType.Magical);
             if (W.IsReady() && Q.IsReady())
             {
                 Q.Cast();
                 W.Cast();
+            }
+            if (E.IsReady() && E.GetPrediction(etarget).HitChance >= Hitch.hitchance(E, FirstMenu))
+            {
+                E.Cast(etarget.Position);
             }
         }
     }

@@ -31,19 +31,41 @@ namespace RoninSkarner
         public static Spell.Active Q;
         public static Spell.Active W;
         public static Spell.Skillshot E;
-        public static Spell.Targeted R;
+        public static Spell.Targeted R;        
+        public static Spell.Targeted Smite { get; private set; }
 
         /// <summary>
         /// It sets the values to the spells
         /// </summary>
         public static void InitializeSpells()
         {
+            var smite = Player.Spells.FirstOrDefault(s => s.SData.Name.ToLower().Contains("smite"));
+            if (smite != null)
+            Smite = new Spell.Targeted(smite.Slot, 570);
             Q = new Spell.Active(SpellSlot.Q, 350);
             W = new Spell.Active(SpellSlot.W, 1);
             E = new Spell.Skillshot(SpellSlot.E, 980, SkillShotType.Linear);
             R = new Spell.Targeted(SpellSlot.R, 350);
 
             Obj_AI_Base.OnLevelUp += Obj_AI_Base_OnLevelUp;
+        }
+
+        public static bool HasSmite()
+        {
+            return Smite != null;
+        }
+
+        public static bool HasChillingSmite()
+        {
+
+            return Smite != null &&
+                   Smite.Name.Equals("s5_summonersmiteplayerganker", StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        public static bool HasChallengingSmite()
+        {
+            return Smite != null &&
+            Smite.Name.Equals("s5_summonersmiteduel", StringComparison.CurrentCultureIgnoreCase);
         }
 
         #region Damages

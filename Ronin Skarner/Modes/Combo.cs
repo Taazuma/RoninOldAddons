@@ -35,7 +35,7 @@ namespace RoninSkarner.Modes
             var enemiese = EntityManager.Heroes.Enemies.OrderByDescending
              (a => a.HealthPercent).Where(a => !a.IsMe && a.IsValidTarget() && a.Distance(Player) <= E.Range);
 
-            if (ComboMenu.GetCheckBoxValue("eUse") && etarget.IsValidTarget(SpellsManager.E.Range) && E.IsReady() && E.GetPrediction(etarget).HitChance >= HitChance.High)
+            if (ComboMenu.GetCheckBoxValue("eUse") && etarget.IsValidTarget(SpellsManager.E.Range) && E.IsReady() && E.GetPrediction(etarget).HitChance >= Hitch.hitchance(E, FirstMenu))
             {
                 foreach (var eenemies in enemiese)
                 {

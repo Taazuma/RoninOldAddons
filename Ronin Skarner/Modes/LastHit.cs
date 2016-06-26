@@ -31,7 +31,6 @@ namespace RoninSkarner.Modes
             Q.TryToCast(Q.GetLastHitMinion(), LasthitMenu);
             W.TryToCast(W.GetLastHitMinion(), LasthitMenu);
             E.TryToCast(E.GetLastHitMinion(), LasthitMenu);
-            R.TryToCast(R.GetLastHitMinion(), LasthitMenu);
         }
     }
 }
