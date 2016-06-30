@@ -42,9 +42,6 @@
     <Reference Include="EloBuddy.SDK">
       <HintPath>D:\Tommi\Documents\My\Deve\ItsMeMario-master\ItsMeMario-master\Mario`s Lib\Mario`s Lib\bin\Debug\EloBuddy.SDK.dll</HintPath>
     </Reference>
-    <Reference Include="Mario`s Lib">
-      <HintPath>D:\Tommi\Documents\My\Deve\ItsMeMario-master\ItsMeMario-master\Mario`s Lib\Mario`s Lib\bin\Debug\Mario`s Lib.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>D:\Tommi\Documents\My\Deve\ItsMeMario-master\ItsMeMario-master\Mario`s Lib\Mario`s Lib\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -62,8 +59,10 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorSliders.cs" />
     <Compile Include="DamageIndicator.cs" />
     <Compile Include="DrawingsManager.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="EventsManager.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Menus.cs" />

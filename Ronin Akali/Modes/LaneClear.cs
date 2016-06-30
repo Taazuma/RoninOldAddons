@@ -12,7 +12,6 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
 using static RoninAkali.Menus;
 using static RoninAkali.SpellsManager;
 
@@ -23,15 +22,27 @@ namespace RoninAkali.Modes
     /// </summary>
     internal class LaneClear
     {
-         public static readonly AIHeroClient Player = ObjectManager.Player;
+        
+        public static readonly AIHeroClient Player = ObjectManager.Player;
+
         public static void Execute()
         {
-            var count =
-             EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.ServerPosition,
-                 Player.AttackRange, false).Count();
-            var source =
-              EntityManager.MinionsAndMonsters.GetLaneMinions().OrderBy(a => a.MaxHealth).FirstOrDefault(a => a.IsValidTarget(Q.Range));
+            var count =EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.ServerPosition,Player.AttackRange, false).Count();
+            var source = EntityManager.MinionsAndMonsters.GetLaneMinions().OrderBy(a => a.MaxHealth).FirstOrDefault(a => a.IsValidTarget(Q.Range));
             if (count == 0) return;
+
+            if (Q.IsReady() && LaneClearMenu.GetCheckBoxValue("qUse") && source.IsValidTarget(Q.Range))
+            {
+                Q.Cast(source);
+            }
+
+            var QBuff = source.HasBuff("AkaliMota");
+
+
+            if (QBuff && source.IsValidTarget(Combo._player.GetAutoAttackRange(source)) && LaneClearMenu.GetCheckBoxValue("aaclear"))
+            {
+                return;
+            }
 
 
             if (E.IsReady() && LaneClearMenu.GetCheckBoxValue("eUse") && source.IsValidTarget(E.Range))
@@ -39,15 +50,17 @@ namespace RoninAkali.Modes
                 E.Cast();
             }
 
-            if (Q.IsReady() && LaneClearMenu.GetCheckBoxValue("qUse"))
-            {
-                Q.Cast(source);
-            }
 
             if (R.IsReady() && LaneClearMenu.GetCheckBoxValue("rUse"))
             {
                 R.Cast(source);
             }
+
+            if (QBuff && source.IsValidTarget(Combo._player.GetAutoAttackRange(source)))
+            {
+                return;
+            }
+
 
         }
     }
