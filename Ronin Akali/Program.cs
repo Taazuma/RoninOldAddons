@@ -33,6 +33,7 @@ namespace RoninAkali
         {
             get { return ObjectManager.Player; }
         }
+
         public static int qOff = 0, wOff = 0, eOff = 0, rOff = 0;
         private static int[] AbilitySequence;
         public const float SmiteRange = 570;
@@ -51,10 +52,10 @@ namespace RoninAkali
             ModeManager.InitializeModes();
             DrawingsManager.InitializeDrawings();
             Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
-            Gapcloser.OnGapcloser += AntiGapCloser;
             Game.OnUpdate += OnGameUpdate;
             Game.OnTick += GameOnTick;
             Events.Initialize();
+            EventsManager.Initialize();
         }
 
         private static void GameOnTick(EventArgs args)
@@ -91,23 +92,14 @@ namespace RoninAkali
             "TT_Spiderboss", "TTNGolem", "TTNWolf", "TTNWraith",
         };
 
-        private static void AntiGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
-        {
-            if (!e.Sender.IsValidTarget() || !MiscMenu["gapcloser.w"].Cast<CheckBox>().CurrentValue || e.Sender.Type != _player.Type || !e.Sender.IsEnemy)
-            {
-                return;
-            }
-
-            W.Cast(Player.Instance);
-        }
-
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs e)
         {
-            if (!sender.IsValidTarget(Q.Range) || e.DangerLevel != DangerLevel.High || e.Sender.Type != _player.Type || !e.Sender.IsEnemy)
+            if (!sender.IsValidTarget(W.Range) || e.DangerLevel != DangerLevel.High || e.Sender.Type != _player.Type || !e.Sender.IsEnemy)
             {
                 return;
             }
-            if (Q.IsReady() && MiscMenu["interrupt.w"].Cast<CheckBox>().CurrentValue)
+
+            if (W.IsReady() && MiscMenu["interrupt.w"].Cast<CheckBox>().CurrentValue)
             {
                 W.Cast(Player.Instance);
             }
