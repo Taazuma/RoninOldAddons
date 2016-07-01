@@ -12,6 +12,7 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
+using Mario_s_Lib;
 using static RoninAkali.Menus;
 
 namespace RoninAkali
@@ -31,7 +32,7 @@ namespace RoninAkali
         public static Spell.Skillshot W;
         public static Spell.Active E;
         public static Spell.Targeted R;
-        public static Spell.Targeted Smite { get; private set; }
+
         /// <summary>
         /// It sets the values to the spells
         /// </summary>
@@ -41,27 +42,8 @@ namespace RoninAkali
             W = new Spell.Skillshot(SpellSlot.W, 700, SkillShotType.Circular, 250, int.MaxValue, 400);
             E = new Spell.Active(SpellSlot.E, 325);
             R = new Spell.Targeted(SpellSlot.R, 700);
-            var smite = Player.Spells.FirstOrDefault(s => s.SData.Name.ToLower().Contains("smite"));
-            if (smite != null)
-                Smite = new Spell.Targeted(smite.Slot, 570);
-        }
 
-        public static bool HasSmite()
-        {
-            return Smite != null;
-        }
-
-        public static bool HasChillingSmite()
-        {
-
-            return Smite != null &&
-                   Smite.Name.Equals("s5_summonersmiteplayerganker", StringComparison.CurrentCultureIgnoreCase);
-        }
-
-        public static bool HasChallengingSmite()
-        {
-            return Smite != null &&
-            Smite.Name.Equals("s5_summonersmiteduel", StringComparison.CurrentCultureIgnoreCase);
+            Obj_AI_Base.OnLevelUp += Obj_AI_Base_OnLevelUp;
         }
 
         #region Damages
@@ -125,21 +107,46 @@ namespace RoninAkali
 
             return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, rawDamage);
         }
-
-        public static float GetTotalDamage(this Obj_AI_Base target)
-        {
-            var dmg =
-                Player.Spells.Where(
-                    s => (s.Slot == SpellSlot.Q) || (s.Slot == SpellSlot.W) || (s.Slot == SpellSlot.E) || (s.Slot == SpellSlot.R) && s.IsReady)
-                    .Sum(s => target.GetDamage(s.Slot));
-
-            return dmg + Player.Instance.GetAutoAttackDamage(target);
-        }
         /// <summary>
         /// This event is triggered when a unit levels up
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
+        private static void Obj_AI_Base_OnLevelUp(Obj_AI_Base sender, Obj_AI_BaseLevelUpEventArgs args)
+        {
+            if (MiscMenu.GetCheckBoxValue("activateAutoLVL") && sender.IsMe)
+            {
+                var delay = MiscMenu.GetSliderValue("delaySlider");
+                Core.DelayAction(LevelUPSpells, delay);
+
+            }
+        }
+
+        /// <summary>
+        /// It will level up the spell using the values of the comboboxes on the menu as a priority
+        /// </summary>
+        private static void LevelUPSpells()
+        {
+            if (Player.Instance.Spellbook.CanSpellBeUpgraded(SpellSlot.R))
+            {
+                Player.Instance.Spellbook.LevelSpell(SpellSlot.R);
+            }
+
+            if (Player.Instance.Spellbook.CanSpellBeUpgraded(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("firstFocus"))))
+            {
+                Player.Instance.Spellbook.LevelSpell(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("firstFocus")));
+            }
+
+            if (Player.Instance.Spellbook.CanSpellBeUpgraded(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("secondFocus"))))
+            {
+                Player.Instance.Spellbook.LevelSpell(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("secondFocus")));
+            }
+
+            if (Player.Instance.Spellbook.CanSpellBeUpgraded(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("thirdFocus"))))
+            {
+                Player.Instance.Spellbook.LevelSpell(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("thirdFocus")));
+            }
+        }
 
         /// <summary>
         /// It will transform the value of the combobox into a SpellSlot

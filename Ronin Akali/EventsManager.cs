@@ -1,7 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
-using EloBuddy.SDK.Menu.Values;
 
 namespace RoninAkali
 {
@@ -16,7 +15,7 @@ namespace RoninAkali
         {
             if (!sender.IsEnemy) return;
 
-            if (sender.IsValidTarget(SpellsManager.R.Range) && SpellsManager.W.IsReady() && RoninAkali.Menus.MiscMenu["gapcloser.w"].Cast<CheckBox>().CurrentValue)
+            if (sender.IsValidTarget(SpellsManager.R.Range) && SpellsManager.W.IsReady())
             {
                 SpellsManager.W.Cast(Player.Instance);
             }

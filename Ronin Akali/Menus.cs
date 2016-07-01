@@ -13,6 +13,7 @@ using EloBuddy.SDK.Constants;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
+using Mario_s_Lib;
 
 namespace RoninAkali
 {
@@ -59,8 +60,8 @@ namespace RoninAkali
             LasthitMenu = FirstMenu.AddSubMenu("• LastHit", LastHitMenuID);
             JungleClearMenu = FirstMenu.AddSubMenu("• JungleClear", JungleClearMenuID);
             KillStealMenu = FirstMenu.AddSubMenu("• KillSteal", KillStealMenuID);
-            DrawingsMenu = FirstMenu.AddSubMenu("• Drawings", DrawingsMenuID);
             MiscMenu = FirstMenu.AddSubMenu("• Misc", MiscMenuID);
+            DrawingsMenu = FirstMenu.AddSubMenu("• Drawings", DrawingsMenuID);
 
             ComboMenu.AddGroupLabel("ComboMenu");
             ComboMenu.AddGroupLabel("ONLY USE ON COMBO");
@@ -92,24 +93,23 @@ namespace RoninAkali
             HarassMenu.CreateCheckBox(" - Use Q", "qUse");
             HarassMenu.CreateCheckBox(" - Use E", "eUse");
             HarassMenu.AddGroupLabel("Settings");
-            HarassMenu.CreateSlider("Mana must be higher than [{0}%] to use Harass spells", "manaSlider", 30);
+            HarassMenu.CreateSlider("Mana must be lower than [{0}%] to use Harass spells", "manaSlider", 30);
 			HarassMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
 
             LaneClearMenu.AddGroupLabel("LaneClear");
 			LaneClearMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             LaneClearMenu.CreateCheckBox(" - Use Q", "qUse");
-            LaneClearMenu.CreateCheckBox(" - Use AA Reset", "aaclear");
             LaneClearMenu.CreateCheckBox(" - Use E", "eUse");
             LaneClearMenu.CreateCheckBox(" - Use R", "rUse", false);
             LaneClearMenu.AddGroupLabel("Settings");
-            LaneClearMenu.CreateSlider("Mana must be higher than [{0}%] to use LaneClear spells", "manaSlider", 30);
+            LaneClearMenu.CreateSlider("Mana must be lower than [{0}%] to use LaneClear spells", "manaSlider", 30);
 			LaneClearMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
 
             LasthitMenu.AddGroupLabel("Lasthit");
             LasthitMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-            LasthitMenu.CreateCheckBox(" - Use Q", "qUse", false);
+            LasthitMenu.CreateCheckBox(" - Use Q", "qUse");
             LasthitMenu.AddGroupLabel("Settings");
-            LasthitMenu.CreateSlider("Mana must be higher than [{0}%] to use LastHit spells", "manaSlider", 30);
+            LasthitMenu.CreateSlider("Mana must be lower than [{0}%] to use LastHit spells", "manaSlider", 30);
             LasthitMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
 
             JungleClearMenu.AddGroupLabel("JungleClear");
@@ -118,17 +118,36 @@ namespace RoninAkali
             JungleClearMenu.CreateCheckBox(" - Use E", "eUse");
             JungleClearMenu.CreateCheckBox(" - Use R", "rUse", false);
             JungleClearMenu.AddGroupLabel("Settings");
-            JungleClearMenu.CreateSlider("Mana must be higher than [{0}%] to use JungleClear spells", "manaSlider", 30);
+            JungleClearMenu.CreateSlider("Mana must be lower than [{0}%] to use JungleClear spells", "manaSlider", 30);
 			JungleClearMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
 
             KillStealMenu.AddGroupLabel("KillSteal");
 			KillStealMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             KillStealMenu.CreateCheckBox(" - Use Q", "qUse");
             KillStealMenu.CreateCheckBox(" - Use E", "eUse");
-            KillStealMenu.CreateCheckBox(" - Use R", "rUse", false);
+            KillStealMenu.CreateCheckBox(" - Use R", "rUse");
             KillStealMenu.AddGroupLabel("Settings");
-            KillStealMenu.CreateSlider("Mana must be higher than [{0}%] to use Killsteal spells", "manaSlider", 30);
+            KillStealMenu.CreateSlider("Mana must be lower than [{0}%] to use Killsteal spells", "manaSlider", 30);
 			KillStealMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+            MiscMenu.AddGroupLabel("Skin Changer");
+            
+            var skinList = Mario_s_Lib.DataBases.Skins.SkinsDB.FirstOrDefault(list => list.Champ == Player.Instance.Hero);
+            if (skinList != null)
+            {
+                MiscMenu.CreateComboBox("Choose the skin", "skinComboBox", skinList.Skins);
+                MiscMenu.Get<ComboBox>("skinComboBox").OnValueChange += delegate(ValueBase<int> sender, ValueBase<int>.ValueChangeArgs args)
+                {
+                    Player.Instance.SetSkinId(sender.CurrentValue);
+                };
+            }
+
+            MiscMenu.AddGroupLabel("Auto Level UP");
+            MiscMenu.CreateCheckBox("Activate Auto Leveler", "activateAutoLVL", false);
+            MiscMenu.AddLabel("The auto leveler will always focus R than the rest of the spells");
+            MiscMenu.CreateComboBox("1st Spell to focus", "firstFocus", new List<string> {"Q", "W", "E"});
+            MiscMenu.CreateComboBox("2nd Spell to focus", "secondFocus", new List<string> {"Q", "W", "E"}, 1);
+            MiscMenu.CreateComboBox("3rd Spell to focus", "thirdFocus", new List<string> {"Q", "W", "E"}, 2);
+            MiscMenu.CreateSlider("Delay slider", "delaySlider", 200, 150, 500);
 
             DrawingsMenu.AddGroupLabel("Settings");
             DrawingsMenu.CreateCheckBox(" - Draw Spell`s range only if they are ready.", "readyDraw");
@@ -137,8 +156,8 @@ namespace RoninAkali
             DrawingsMenu.CreateCheckBox(" - Draw damage indicator statistics.", "statDraw", false);
             DrawingsMenu.AddGroupLabel("Spells");
             DrawingsMenu.CreateCheckBox(" - Draw Q.", "qDraw");
-            DrawingsMenu.CreateCheckBox(" - Draw W.", "wDraw", false);
-            DrawingsMenu.CreateCheckBox(" - Draw E.", "eDraw", false);
+            DrawingsMenu.CreateCheckBox(" - Draw W.", "wDraw");
+            DrawingsMenu.CreateCheckBox(" - Draw E.", "eDraw");
             DrawingsMenu.CreateCheckBox(" - Draw R.", "rDraw");
             DrawingsMenu.AddGroupLabel("Drawings Color");
             QColorSlide = new ColorSlide(DrawingsMenu, "qColor", Color.Red, "Q Color:");
@@ -146,36 +165,9 @@ namespace RoninAkali
             EColorSlide = new ColorSlide(DrawingsMenu, "eColor", Color.Orange, "E Color:");
             RColorSlide = new ColorSlide(DrawingsMenu, "rColor", Color.DeepPink, "R Color:");
             DamageIndicatorColorSlide = new ColorSlide(DrawingsMenu, "healthColor", Color.YellowGreen, "DamageIndicator Color:");
-
-            MiscMenu.Add("interrupt.w", new CheckBox("W Cast to Interrupt"));
-            MiscMenu.Add("gapcloser.w", new CheckBox("W Cast on Incoming Gapcloser"));
-            MiscMenu.AddLabel("Level Up Function");
-            MiscMenu.Add("lvlup", new CheckBox("Auto Level Up Spells", false));
-            MiscMenu.AddSeparator(10);
-            MiscMenu.AddLabel("Skin settings");
-            MiscMenu.Add("skin.Id", new Slider("Skin Editor", 3, 1, 4));
-            if (SpellsManager.Smite.IsLearned)
-            {
-                MiscMenu.AddLabel("Smite Spell");
-                MiscMenu.CreateCheckBox("Use Smite to KS", "sks");
-                MiscMenu.CreateCheckBox("Use Smite in JGL", "sjgl");
-                //MiscMenu.CreateCheckBox("Use Smite in Fight", "fjgl", false);
-                MiscMenu.Add("smitekey", new KeyBind("Smite Activated", false, KeyBind.BindTypes.PressToggle, 'M'));
-                MiscMenu.AddSeparator(15);
-                MiscMenu.Add("vSmiteDrawSmiteStatus", new CheckBox("Draw Smite Status"));
-                MiscMenu.Add("vSmiteDrawSmiteable", new CheckBox("Draw Smiteable Monsters"));
-                MiscMenu.Add("vSmiteDrawRange", new CheckBox("Draw Smite Range"));
-            }
-
-           
-
         }
         public static int Qdelay { get { return ComboMenu["Qdelay"].Cast<Slider>().CurrentValue; } }
         public static int Edelay { get { return ComboMenu["Edelay"].Cast<Slider>().CurrentValue; } }
         public static int Rdelay { get { return ComboMenu["Rdelay"].Cast<Slider>().CurrentValue; } }
-        public static int skinId()
-        {
-            return MiscMenu["skin.Id"].Cast<Slider>().CurrentValue;
-        }
     }
 }
