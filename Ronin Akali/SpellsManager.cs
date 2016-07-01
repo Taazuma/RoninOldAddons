@@ -12,56 +12,33 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
 
-namespace RoninAkali
+namespace Eclipse
 {
     public static class SpellsManager
     {
-        /*
-        Targeted spells are like Katarina`s Q
-        Active spells are like Katarina`s W
-        Skillshots are like Ezreal`s Q
-        Circular Skillshots are like Lux`s E and Tristana`s W
-        Cone Skillshots are like Annie`s W and ChoGath`s W
-        */
 
-        //Remenber of putting the correct type of the spell here
         public static Spell.Targeted Q;
         public static Spell.Skillshot W;
         public static Spell.Active E;
         public static Spell.Targeted R;
 
-        /// <summary>
-        /// It sets the values to the spells
-        /// </summary>
         public static void InitializeSpells()
         {
             Q = new Spell.Targeted(SpellSlot.Q, 600);
             W = new Spell.Skillshot(SpellSlot.W, 700, SkillShotType.Circular, 250, int.MaxValue, 400);
             E = new Spell.Active(SpellSlot.E, 325);
             R = new Spell.Targeted(SpellSlot.R, 700);
-
-            Obj_AI_Base.OnLevelUp += Obj_AI_Base_OnLevelUp;
         }
 
-        #region Damages
+            #region Damages
 
-        /// <summary>
-        /// It will return the damage but you need to set them before getting the damage
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="slot"></param>
-        /// <returns></returns>
         public static float GetDamage(this Obj_AI_Base target, SpellSlot slot)
         {
-            var damageType = DamageType.Magical;
+            const DamageType damageType = DamageType.Magical;
             var AD = Player.Instance.FlatPhysicalDamageMod;
             var AP = Player.Instance.FlatMagicDamageMod;
             var sLevel = Player.GetSpell(slot).Level - 1;
-
-            //You can get the damage information easily on wikia
 
             var dmg = 0f;
 
@@ -70,36 +47,41 @@ namespace RoninAkali
                 case SpellSlot.Q:
                     if (Q.IsReady())
                     {
-                        //Information of Q damage
-                        dmg += new float[] {20, 45, 70, 95, 120}[sLevel] + 1f*AD;
+                        dmg += new float[] { 60, 110, 160, 210, 260 }[sLevel] + 0.7f * AP;
                     }
                     break;
                 case SpellSlot.W:
                     if (W.IsReady())
                     {
-                        //Information of W damage
-                        dmg += new float[] {0, 0, 0, 0, 0}[sLevel] + 1f*AD;
+                        dmg += new float[] { 0, 0, 0, 0, 0 }[sLevel] + 0f * AD;
                     }
                     break;
                 case SpellSlot.E:
                     if (E.IsReady())
                     {
-                        //Information of E damage
-                        dmg += new float[] {80, 110, 140, 170, 200}[sLevel];
+                        dmg += new float[] { 60, 105, 150, 195, 240 }[sLevel] + 0.6f * AP;
                     }
                     break;
                 case SpellSlot.R:
                     if (R.IsReady())
                     {
-                        //Information of R damage
-                        dmg += new float[] {600, 840, 1080}[sLevel]*0.6f + 1.2f*AP;
+                        dmg += new float[] { 300, 400, 500 }[sLevel] + 0.75f * AP;
                     }
                     break;
             }
             return Player.Instance.CalculateDamageOnUnit(target, damageType, dmg - 10);
         }
 
-        #endregion Damages
+        public static float GetTotalDamage(this Obj_AI_Base target)
+        {
+            var dmg =
+                Player.Spells.Where(
+                    s => (s.Slot == SpellSlot.Q) || (s.Slot == SpellSlot.W) || (s.Slot == SpellSlot.E) || (s.Slot == SpellSlot.R) && s.IsReady)
+                    .Sum(s => target.GetDamage(s.Slot));
+
+            return dmg + Player.Instance.GetAutoAttackDamage(target);
+        }
+
         public static float GetPassiveDamage(this Obj_AI_Base target)
         {
             var rawDamage = new float[] { 18, 26, 34, 42, 50, 58, 66, 74, 82, 90, 98, 106, 114, 122, 130, 138, 146, 154 }[Player.Instance.Level] +
@@ -107,52 +89,14 @@ namespace RoninAkali
 
             return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, rawDamage);
         }
-        /// <summary>
-        /// This event is triggered when a unit levels up
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private static void Obj_AI_Base_OnLevelUp(Obj_AI_Base sender, Obj_AI_BaseLevelUpEventArgs args)
-        {
-            if (MiscMenu.GetCheckBoxValue("activateAutoLVL") && sender.IsMe)
-            {
-                var delay = MiscMenu.GetSliderValue("delaySlider");
-                Core.DelayAction(LevelUPSpells, delay);
 
-            }
+        public static bool HasPassive(this Obj_AI_Base target)
+        {
+            return target.HasBuff("luxilluminatingfraulein");
         }
 
-        /// <summary>
-        /// It will level up the spell using the values of the comboboxes on the menu as a priority
-        /// </summary>
-        private static void LevelUPSpells()
-        {
-            if (Player.Instance.Spellbook.CanSpellBeUpgraded(SpellSlot.R))
-            {
-                Player.Instance.Spellbook.LevelSpell(SpellSlot.R);
-            }
+        #endregion Damages
 
-            if (Player.Instance.Spellbook.CanSpellBeUpgraded(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("firstFocus"))))
-            {
-                Player.Instance.Spellbook.LevelSpell(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("firstFocus")));
-            }
-
-            if (Player.Instance.Spellbook.CanSpellBeUpgraded(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("secondFocus"))))
-            {
-                Player.Instance.Spellbook.LevelSpell(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("secondFocus")));
-            }
-
-            if (Player.Instance.Spellbook.CanSpellBeUpgraded(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("thirdFocus"))))
-            {
-                Player.Instance.Spellbook.LevelSpell(GetSlotFromComboBox(MiscMenu.GetComboBoxValue("thirdFocus")));
-            }
-        }
-
-        /// <summary>
-        /// It will transform the value of the combobox into a SpellSlot
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
         private static SpellSlot GetSlotFromComboBox(this int value)
         {
             switch (value)

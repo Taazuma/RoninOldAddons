@@ -12,14 +12,13 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
+using static Eclipse.Menus;
 using EloBuddy.SDK.Menu;
-using static RoninAkali.SpellsManager;
+using static Eclipse.SpellsManager;
 
 //using Settings = RoninTune.Modes.Flee
 
-namespace RoninAkali.Modes
+namespace Eclipse.Modes
 {
     internal class Flee
     {
@@ -29,6 +28,7 @@ namespace RoninAkali.Modes
         }
         public static void Execute()
         {
+
             if (R.IsReady() && Player.Instance.HealthPercent <= 35 && Player.Instance.CountEnemiesInRange(R.Range) >= 1)
             {
                 var enemyminion =
@@ -43,7 +43,6 @@ namespace RoninAkali.Modes
             {
                 W.Cast(Player.Instance);
             }
-
         }
     }
 }

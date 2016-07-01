@@ -1,4 +1,6 @@
-﻿using System;
+﻿using static Eclipse.SpellsManager;
+using static Eclipse.Menus;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,20 +14,10 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
-using static RoninAkali.SpellsManager;
-
-namespace RoninAkali.Modes
+namespace Eclipse.Modes
 {
-    /// <summary>
-    /// This mode will run when the key of the orbwalker is pressed
-    /// </summary>
     internal class JungleClear
     {
-        /// <summary>
-        /// Put in here what you want to do when the mode is running
-        /// </summary>
         public static void Execute()
         {
             var target = EntityManager.MinionsAndMonsters.GetJungleMonsters().OrderByDescending(a => a.MaxHealth).FirstOrDefault(a => a.IsValidTarget(900));
@@ -34,6 +26,13 @@ namespace RoninAkali.Modes
             if (JungleClearMenu.GetCheckBoxValue("qUse") && Q.IsReady())
             {
                 Q.Cast(target);
+            }
+
+            var QBuff = target.HasBuff("AkaliMota");
+
+            if (QBuff && target.IsValidTarget(Combo._player.GetAutoAttackRange(target)) && JungleClearMenu.GetCheckBoxValue("abclear"))
+            {
+                return;
             }
 
             if (JungleClearMenu.GetCheckBoxValue("eUse") && E.IsReady() && target.IsValidTarget(E.Range))
@@ -45,7 +44,6 @@ namespace RoninAkali.Modes
             {
                 R.Cast(target);
             }
-
         }
     }
 }

@@ -2,18 +2,12 @@
 using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
-using Mario_s_Lib;
 using SharpDX;
 using SharpDX.Direct3D9;
-using static RoninAkali.Menus;
 using Color = System.Drawing.Color;
-using Line = EloBuddy.SDK.Rendering.Line;
 
-namespace RoninAkali
+namespace Eclipse
 {
-    /// <summary>
-    /// It draws the damage on the enemies HealthBar
-    /// </summary>
     internal class DamageIndicator
     {
         //Offsets
@@ -36,7 +30,7 @@ namespace RoninAkali
                     Height = 16,
                     Weight = FontWeight.Bold,
                     OutputPrecision = FontPrecision.TrueType,
-                    Quality = FontQuality.ClearType
+                    Quality = FontQuality.ClearType,
                 });
 
             _Font2 = new Font(
@@ -47,7 +41,7 @@ namespace RoninAkali
                     Height = 11,
                     Weight = FontWeight.Bold,
                     OutputPrecision = FontPrecision.TrueType,
-                    Quality = FontQuality.ClearType
+                    Quality = FontQuality.ClearType,
                 });
         }
 
@@ -59,38 +53,38 @@ namespace RoninAkali
                 )
             {
                 var damage = enemy.GetTotalDamage();
-                if (DrawingsMenu.GetCheckBoxValue("damageDraw"))
+                if (Menus.DrawingsMenu.GetCheckBoxValue("damageDraw"))
                 {
                     //Drawing Line Over Enemies Helth bar
-                    var dmgPer = (enemy.TotalShieldHealth() - damage > 0 ? enemy.TotalShieldHealth() - damage : 0)/
+                    var dmgPer = (enemy.TotalShieldHealth() - damage > 0 ? enemy.TotalShieldHealth() - damage : 0) /
                                  enemy.TotalShieldMaxHealth();
-                    var currentHPPer = enemy.TotalShieldHealth()/enemy.TotalShieldMaxHealth();
-                    var initPoint = new Vector2((int) (enemy.HPBarPosition.X + XOff + dmgPer*Width),
-                        (int) enemy.HPBarPosition.Y + YOff);
-                    var endPoint = new Vector2((int) (enemy.HPBarPosition.X + XOff + currentHPPer*Width) + 1,
-                        (int) enemy.HPBarPosition.Y + YOff);
+                    var currentHPPer = enemy.TotalShieldHealth() / enemy.TotalShieldMaxHealth();
+                    var initPoint = new Vector2((int)(enemy.HPBarPosition.X + XOff + dmgPer * Width),
+                        (int)enemy.HPBarPosition.Y + YOff);
+                    var endPoint = new Vector2((int)(enemy.HPBarPosition.X + XOff + currentHPPer * Width) + 1,
+                        (int)enemy.HPBarPosition.Y + YOff);
 
-                    var colour = Color.FromArgb(180, DamageIndicatorColorSlide.GetSystemColor());
-                    Line.DrawLine(colour, Thick, initPoint, endPoint);
+                    var colour = Color.FromArgb(180, Menus.DamageIndicatorColorSlide.GetSystemColor());
+                    EloBuddy.SDK.Rendering.Line.DrawLine(colour, Thick, initPoint, endPoint);
                 }
 
-                if (DrawingsMenu.GetCheckBoxValue("statDraw"))
+                if (Menus.DrawingsMenu.GetCheckBoxValue("statDraw"))
                 {
                     //Statistics
-                    var posXStat = (int) enemy.HPBarPosition[0] - 46;
-                    var posYStat = (int) enemy.HPBarPosition[1] + 12;
+                    var posXStat = (int)enemy.HPBarPosition[0] - 46;
+                    var posYStat = (int)enemy.HPBarPosition[1] + 12;
                     var mathStat = "- " + Math.Round(damage) + " / " +
                                    Math.Round(enemy.Health - damage);
-                    _Font2.DrawText(null, mathStat, posXStat, posYStat, DamageIndicatorColorSlide.GetSharpColor());
+                    _Font2.DrawText(null, mathStat, posXStat, posYStat, Menus.DamageIndicatorColorSlide.GetSharpColor());
                 }
 
-                if (DrawingsMenu.GetCheckBoxValue("perDraw"))
+                if (Menus.DrawingsMenu.GetCheckBoxValue("perDraw"))
                 {
                     //Percent
-                    var posXPer = (int) enemy.HPBarPosition[0] - 28;
-                    var posYPer = (int) enemy.HPBarPosition[1];
-                    _Font.DrawText(null, string.Concat(Math.Ceiling((int) damage/enemy.TotalShieldHealth()*100), "%"),
-                        posXPer, posYPer, DamageIndicatorColorSlide.GetSharpColor());
+                    var posXPer = (int)enemy.HPBarPosition[0] - 28;
+                    var posYPer = (int)enemy.HPBarPosition[1];
+                    _Font.DrawText(null, string.Concat(Math.Ceiling((int)damage / enemy.TotalShieldHealth() * 100), "%"),
+                        posXPer, posYPer, Menus.DamageIndicatorColorSlide.GetSharpColor());
                 }
             }
         }

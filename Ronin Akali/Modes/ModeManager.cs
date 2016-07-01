@@ -12,30 +12,19 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.SpellsManager;
-using static RoninAkali.Menus;
 
-namespace RoninAkali.Modes
+namespace Eclipse.Modes
 {
     internal class ModeManager
     {
-        /// <summary>
-        /// Create the event on tick
-        /// </summary>
         public static void InitializeModes()
         {
             Game.OnTick += Game_OnTick;
         }
 
-        /// <summary>
-        /// This event is triggered every tick of the game
-        /// </summary>
-        /// <param name="args"></param>
         private static void Game_OnTick(EventArgs args)
         {
             var orbMode = Orbwalker.ActiveModesFlags;
-            var playerMana = Player.Instance.ManaPercent;
 
             Active.Execute();
 
@@ -44,35 +33,32 @@ namespace RoninAkali.Modes
                 Combo.Execute();
             }
 
+            if (orbMode.HasFlag(Orbwalker.ActiveModes.Harass))
+            {
+                Harass.Execute();
+            }
+
+            if (orbMode.HasFlag(Orbwalker.ActiveModes.LastHit))
+            {
+                LastHit.Execute();
+            }
+
             if (orbMode.HasFlag(Orbwalker.ActiveModes.Flee))
             {
                 Flee.Execute();
             }
 
-            if (orbMode.HasFlag(Orbwalker.ActiveModes.Harass) && playerMana > HarassMenu.GetSliderValue("manaSlider"))
-            {
-                Harass.Execute();
-            }
-
-            if (orbMode.HasFlag(Orbwalker.ActiveModes.LastHit) && playerMana > LasthitMenu.GetSliderValue("manaSlider"))
-            {
-                LastHit.Execute();
-            }
-
-            if (orbMode.HasFlag(Orbwalker.ActiveModes.LaneClear) && playerMana > LaneClearMenu.GetSliderValue("manaSlider"))
+            if (orbMode.HasFlag(Orbwalker.ActiveModes.LaneClear))
             {
                 LaneClear.Execute();
             }
 
-            if (orbMode.HasFlag(Orbwalker.ActiveModes.JungleClear) && playerMana > JungleClearMenu.GetSliderValue("manaSlider"))
+            if (orbMode.HasFlag(Orbwalker.ActiveModes.JungleClear))
             {
                 JungleClear.Execute();
             }
 
-            if (playerMana > AutoHarassMenu.GetSliderValue("manaSlider") && AutoHarassMenu.GetKeyBindValue("autoHarassKey"))
-            {
-                AutoHarass.Execute();
-            }
+            //AutoHarass.Execute();
         }
     }
 }

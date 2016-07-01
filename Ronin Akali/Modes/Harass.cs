@@ -12,27 +12,22 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
-using static RoninAkali.SpellsManager;
-
-namespace RoninAkali.Modes
+using static Eclipse.SpellsManager;
+using static Eclipse.Menus;
+namespace Eclipse.Modes
 {
-    /// <summary>
-    /// This mode will run when the key of the orbwalker is pressed
-    /// </summary>
     internal class Harass
     {
-        /// <summary>
-        /// Put in here what you want to do when the mode is running
-        /// </summary>
         public static void Execute()
         {
+            
             var qtarget = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
             var wtarget = TargetSelector.GetTarget(W.Range, DamageType.Magical);
             var etarget = TargetSelector.GetTarget(E.Range, DamageType.Magical);
             var rtarget = TargetSelector.GetTarget(R.Range, DamageType.Mixed);
             var target = TargetSelector.GetTarget(Q.Range + 200, DamageType.Magical);
+
+            if (target == null) return;
 
             if (HarassMenu.GetCheckBoxValue("qUse") && Q.IsReady() && qtarget.IsValidTarget(Q.Range))
             {

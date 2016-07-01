@@ -12,18 +12,13 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
-using static RoninAkali.SpellsManager;
+using static Eclipse.SpellsManager;
+using static Eclipse.Menus;
 
-namespace RoninAkali.Modes
+namespace Eclipse.Modes
 {
-    /// <summary>
-    /// This mode will run when the key of the orbwalker is pressed
-    /// </summary>
     internal class Combo
     {
-
         private static AIHeroClient enemyHaveMota
         {
             get
@@ -40,7 +35,6 @@ namespace RoninAkali.Modes
         {
             get { return ObjectManager.Player; }
         }
-
         public static void Execute()
         {
             var qtarget = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
@@ -52,47 +46,47 @@ namespace RoninAkali.Modes
 
             // COMBO 1 Beginn --------------------------------------------------------------------------------
             if (ComboMenu.GetCheckBoxValue("combo1"))
-                { 
-            Core.DelayAction(delegate
             {
-                if (ComboMenu.GetCheckBoxValue("qUse") && Q.IsReady() && qtarget.IsValidTarget(Q.Range))
-                {
-                    Q.Cast(qtarget);
-                }
-            }, Qdelay);
                 Core.DelayAction(delegate
-            {
-                if (ComboMenu.GetCheckBoxValue("rUse") && R.IsReady() && rtarget.IsValidTarget(R.Range))
                 {
-                    R.Cast(rtarget);
-                }
-            }, Rdelay);
+                    if (ComboMenu.GetCheckBoxValue("qUse") && Q.IsReady() && qtarget.IsValidTarget(Q.Range))
+                    {
+                        Q.Cast(qtarget);
+                    }
+                }, Qdelay);
+                Core.DelayAction(delegate
+                {
+                    if (ComboMenu.GetCheckBoxValue("rUse") && R.IsReady() && rtarget.IsValidTarget(R.Range))
+                    {
+                        R.Cast(rtarget);
+                    }
+                }, Rdelay);
 
                 var motaEnemy = enemyHaveMota;
                 if (motaEnemy != null && motaEnemy.IsValidTarget(_player.GetAutoAttackRange(qtarget)))
                     return;
 
                 Core.DelayAction(delegate
-            {
-                if (ComboMenu.GetCheckBoxValue("eUse") && E.IsReady() && etarget.IsValidTarget(E.Range))
                 {
-                    E.Cast();
-                }
-            }, Edelay);
+                    if (ComboMenu.GetCheckBoxValue("eUse") && E.IsReady() && etarget.IsValidTarget(E.Range))
+                    {
+                        E.Cast();
+                    }
+                }, Edelay);
 
-            if (W.IsReady() && wtarget.IsValidTarget(W.Range) && ComboMenu.GetCheckBoxValue("wUse"))
-            {
-                if (Player.Instance.CountEnemiesInRange(Q.Range) >= 1 || Player.Instance.HealthPercent <= 15)
+                if (W.IsReady() && wtarget.IsValidTarget(W.Range) && ComboMenu.GetCheckBoxValue("wUse"))
                 {
-                    W.Cast(Player.Instance);
+                    if (Player.Instance.CountEnemiesInRange(Q.Range) >= 1 || Player.Instance.HealthPercent <= 15)
+                    {
+                        W.Cast(Player.Instance);
+                    }
                 }
-            }
             }
             // COMBO 1 END --------------------------------------------------------------------------------
 
             // COMBO 2 Beginn --------------------------------------------------------------------------------
             if (ComboMenu.GetCheckBoxValue("combo2"))
-                {
+            {
                 Core.DelayAction(delegate
                 {
                     if (ComboMenu.GetCheckBoxValue("qUse") && Q.IsReady() && qtarget.IsValidTarget(Q.Range))

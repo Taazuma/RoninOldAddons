@@ -7,8 +7,7 @@ using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
 using Color = System.Drawing.Color;
-
-namespace RoninAkali
+namespace Eclipse
 {
     public class ColorSlide
     {

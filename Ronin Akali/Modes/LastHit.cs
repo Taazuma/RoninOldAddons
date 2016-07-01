@@ -1,4 +1,6 @@
-﻿using System;
+﻿using static Eclipse.SpellsManager;
+using static Eclipse.Menus;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,25 +14,16 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
-using static RoninAkali.SpellsManager;
 
-namespace RoninAkali.Modes
+namespace Eclipse.Modes
 {
-    /// <summary>
-    /// This mode will run when the key of the orbwalker is pressed
-    /// </summary>
     internal class LastHit
     {
-        /// <summary>
-        /// Put in here what you want to do when the mode is running
-        /// </summary>
         public static void Execute()
         {
             if (LasthitMenu.GetCheckBoxValue("qUse") && Q.IsReady())
-            { 
-            Q.TryToCast(Q.GetLastHitMinion(), LasthitMenu);
+            {
+                Q.TryToCast(Q.GetLastHitMinion(), LasthitMenu);
             }
         }
     }

@@ -12,24 +12,15 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
-using Mario_s_Lib;
-using static RoninAkali.Menus;
-using static RoninAkali.SpellsManager;
-namespace RoninAkali.Modes
+using static Eclipse.SpellsManager;
+using static Eclipse.Menus;
+using System.Diagnostics;
+
+namespace Eclipse.Modes
 {
-    /// <summary>
-    /// This mode will always run
-    /// </summary>
     internal class Active
     {
-        private static AIHeroClient myHero
-        {
-            get { return Player.Instance; }
-        }
-        //public static void Initialize()
-        //{
-        //    Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
-        //}
+
         public static void Execute()
         {
 
@@ -115,5 +106,6 @@ namespace RoninAkali.Modes
             }// END KS
 
         }
+
     }
 }
