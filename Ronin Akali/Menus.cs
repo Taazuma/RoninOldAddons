@@ -59,8 +59,8 @@ namespace RoninAkali
             LasthitMenu = FirstMenu.AddSubMenu("• LastHit", LastHitMenuID);
             JungleClearMenu = FirstMenu.AddSubMenu("• JungleClear", JungleClearMenuID);
             KillStealMenu = FirstMenu.AddSubMenu("• KillSteal", KillStealMenuID);
-            MiscMenu = FirstMenu.AddSubMenu("• Misc", MiscMenuID);
             DrawingsMenu = FirstMenu.AddSubMenu("• Drawings", DrawingsMenuID);
+            MiscMenu = FirstMenu.AddSubMenu("• Misc", MiscMenuID);
 
             ComboMenu.AddGroupLabel("ComboMenu");
             ComboMenu.AddGroupLabel("ONLY USE ON COMBO");
@@ -137,7 +137,7 @@ namespace RoninAkali
             DrawingsMenu.CreateCheckBox(" - Draw damage indicator statistics.", "statDraw", false);
             DrawingsMenu.AddGroupLabel("Spells");
             DrawingsMenu.CreateCheckBox(" - Draw Q.", "qDraw");
-            DrawingsMenu.CreateCheckBox(" - Draw W.", "wDraw",false);
+            DrawingsMenu.CreateCheckBox(" - Draw W.", "wDraw", false);
             DrawingsMenu.CreateCheckBox(" - Draw E.", "eDraw", false);
             DrawingsMenu.CreateCheckBox(" - Draw R.", "rDraw");
             DrawingsMenu.AddGroupLabel("Drawings Color");
@@ -166,6 +166,8 @@ namespace RoninAkali
                 MiscMenu.Add("vSmiteDrawSmiteable", new CheckBox("Draw Smiteable Monsters"));
                 MiscMenu.Add("vSmiteDrawRange", new CheckBox("Draw Smite Range"));
             }
+
+           
 
         }
         public static int Qdelay { get { return ComboMenu["Qdelay"].Cast<Slider>().CurrentValue; } }
