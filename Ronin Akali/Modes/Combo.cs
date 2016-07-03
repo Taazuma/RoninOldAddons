@@ -169,6 +169,32 @@ namespace Eclipse.Modes
             }
             // COMBO 3 END --------------------------------------------------------------------------------
 
+            // COMBO 4 Beginn --------------------------------------------------------------------------------
+            if (ComboMenu.GetCheckBoxValue("combo4"))
+            {
+
+                    if (ComboMenu.GetCheckBoxValue("qUse") && Q.IsReady() && qtarget.IsValidTarget(Q.Range))
+                    {
+                        Q.Cast(qtarget);
+                    }
+
+                var motaEnemy = enemyHaveMota;
+                if (motaEnemy != null && motaEnemy.IsValidTarget(_player.GetAutoAttackRange(qtarget)))
+                    return;
+
+                    if (ComboMenu.GetCheckBoxValue("eUse") && E.IsReady() && etarget.IsValidTarget(E.Range))
+                    {
+                        E.Cast();
+                    }
+
+                    if (ComboMenu.GetCheckBoxValue("rUse") && R.IsReady() && rtarget.IsValidTarget(R.Range))
+                    {
+                        R.Cast(rtarget);
+                    }
+
+            }
+            // COMBO 4 END --------------------------------------------------------------------------------
+
         }
     }
 }

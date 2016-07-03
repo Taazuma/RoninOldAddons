@@ -64,6 +64,8 @@ namespace Eclipse
             ComboMenu.AddSeparator(10);
             ComboMenu.CreateCheckBox("Extend Three", "combo3", false);
             ComboMenu.AddGroupLabel("Combo R - Q - AA - E - W (when Low)");
+            ComboMenu.CreateCheckBox("Extend Four", "combo4", false);
+            ComboMenu.AddGroupLabel("Combo Q - AA - E - R");
             ComboMenu.AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             ComboMenu.CreateCheckBox(" - Use Q", "qUse");
             ComboMenu.CreateCheckBox(" - Use W", "wUse");
@@ -141,7 +143,7 @@ namespace Eclipse
             MiscMenu.Add("lvlup", new CheckBox("Auto Level Up Spells", false));
             MiscMenu.AddSeparator(15);
             MiscMenu.AddLabel("Skin Settings");
-            MiscMenu.Add("skin.Id", new Slider("Skin Editor", 3, 1, 4));
+            MiscMenu.Add("skin.Id", new Slider("Skin Editor", 1, 0, 8));
 
         }
         public static int skinId()
